@@ -1,7 +1,7 @@
 // Content script, injected into TikTok / Instagram / YouTube pages. It only
-// switches on when the page is a feed frame inside the Brainrot tab; in
+// switches on when the page is a feed frame inside the Doomstack tab; in
 // normal browsing it does nothing. Inside a feed frame it:
-//   1. Reports the user's own scroll gestures to the Brainrot page.
+//   1. Reports the user's own scroll gestures to the Doomstack page.
 //   2. Advances this feed when the page says another feed was scrolled.
 //   3. Mutes / unmutes this feed's media when the page asks.
 //
@@ -15,7 +15,7 @@
     location.ancestorOrigins?.[0] === EXTENSION_ORIGIN;
   if (!isFeedFrame) return;
 
-  const send = (message) => window.parent.postMessage({ brainrot: true, ...message }, EXTENSION_ORIGIN);
+  const send = (message) => window.parent.postMessage({ doomstack: true, ...message }, EXTENSION_ORIGIN);
 
   // ===========================================================================
   // SELECTORS — UPDATE THESE WHEN A PLATFORM CHANGES ITS LAYOUT
@@ -407,9 +407,9 @@
     send({ type: 'video-rect', x, y, w, h, frameWidth, frameHeight });
   }, 400);
 
-  // --- Incoming messages from the Brainrot page --------------------------------
+  // --- Incoming messages from the Doomstack page --------------------------------
   window.addEventListener('message', (event) => {
-    if (event.origin !== EXTENSION_ORIGIN || !event.data?.brainrot) return;
+    if (event.origin !== EXTENSION_ORIGIN || !event.data?.doomstack) return;
     if (event.data.type === 'advance') advance(event.data.direction);
     if (event.data.type === 'mute') setMuted(Boolean(event.data.muted));
   });

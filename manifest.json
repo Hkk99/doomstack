@@ -1,10 +1,10 @@
 {
   "manifest_version": 3,
-  "name": "Brainrot",
+  "name": "Doomstack",
   "version": "1.0.0",
   "description": "TikTok, Instagram Reels and YouTube Shorts, side by side and in sync.",
   "action": {
-    "default_title": "Open Brainrot"
+    "default_title": "Open Doomstack"
   },
   "background": {
     "service_worker": "background.js"

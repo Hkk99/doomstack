@@ -1,4 +1,4 @@
-// The Brainrot page: three frames plus the sync logic that connects them.
+// The Doomstack page: three frames plus the sync logic that connects them.
 // Each frame runs content.js, which talks to this page with postMessage.
 
 const FEEDS = [
@@ -40,7 +40,7 @@ function post(id, message) {
   const { iframe } = columns.get(id);
   // Target '*' because the frame may have navigated (e.g. to a login page);
   // content.js only accepts messages that come from this extension's origin.
-  iframe.contentWindow?.postMessage({ brainrot: true, ...message }, '*');
+  iframe.contentWindow?.postMessage({ doomstack: true, ...message }, '*');
 }
 
 function render() {
@@ -149,7 +149,7 @@ function bindToggle(elementId, key) {
 
 // Messages from the frames (see content.js).
 window.addEventListener('message', (event) => {
-  if (!event.data?.brainrot) return;
+  if (!event.data?.doomstack) return;
   const entry = [...columns].find(([, column]) => column.iframe.contentWindow === event.source);
   if (!entry) return;
   const [sourceId] = entry;
@@ -202,7 +202,7 @@ async function start() {
   // The sites refuse to be framed unless the background worker has lifted
   // that restriction for this tab, so wait for it before loading them.
   const response = await chrome.runtime.sendMessage({ type: 'allow-framing' });
-  if (!response?.ok) console.error('Brainrot: could not enable framing', response?.error);
+  if (!response?.ok) console.error('Doomstack: could not enable framing', response?.error);
   for (const feed of FEEDS) columns.get(feed.id).iframe.src = feed.url;
 }
 

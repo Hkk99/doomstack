@@ -1,8 +1,8 @@
 // Service worker. Two jobs:
-//   1. Clicking the toolbar icon opens the Brainrot page in a tab.
+//   1. Clicking the toolbar icon opens the Doomstack page in a tab.
 //   2. Let the three sites load inside that tab's frames. They normally send
 //      headers that forbid being framed; we strip those headers, but only for
-//      frames inside a Brainrot tab, never for normal browsing.
+//      frames inside a Doomstack tab, never for normal browsing.
 
 const FEED_DOMAINS = ['tiktok.com', 'instagram.com', 'youtube.com'];
 const PAGE_URL = chrome.runtime.getURL('index.html');
@@ -11,7 +11,7 @@ chrome.action.onClicked.addListener(() => {
   chrome.tabs.create({ url: PAGE_URL });
 });
 
-// One session rule per Brainrot tab, using the tab id as the rule id.
+// One session rule per Doomstack tab, using the tab id as the rule id.
 function allowFramingInTab(tabId) {
   return chrome.declarativeNetRequest.updateSessionRules({
     removeRuleIds: [tabId],

@@ -1,18 +1,12 @@
-# Dependencies
+# Leftovers from the old desktop app build
 node_modules/
-
-# Build output
 dist/
 release/
 
-# Logs
-*.log
-npm-debug.log*
-
-# Local env files
-.env
-.env.*
-*.local
+# Packaged extension
+*.zip
+*.crx
+*.pem
 
 # OS / editor
 .DS_Store
