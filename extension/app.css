@@ -1,0 +1,225 @@
+/* Strict dark theme; colours follow Tailwind's zinc/indigo scales. */
+:root {
+  color-scheme: dark;
+  --zinc-950: #09090b;
+  --zinc-900: #18181b;
+  --zinc-400: #a1a1aa;
+  --zinc-200: #e4e4e7;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--zinc-950);
+  color: #f4f4f5;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  user-select: none;
+}
+
+/* ---- Header --------------------------------------------------------- */
+.header {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: space-between;
+  height: 44px;
+  padding: 0 16px;
+  background: rgb(24 24 27 / 0.7);
+  border-bottom: 1px solid rgb(255 255 255 / 0.1);
+  backdrop-filter: blur(12px);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.logo-bars span {
+  width: 6px;
+  border-radius: 2px;
+}
+
+.logo-bars span:nth-child(1) {
+  height: 12px;
+  background: #22d3ee;
+}
+
+.logo-bars span:nth-child(2) {
+  height: 20px;
+  background: var(--indigo-500);
+}
+
+.logo-bars span:nth-child(3) {
+  height: 14px;
+  background: #e879f9;
+}
+
+.logo-text {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  background: linear-gradient(to right, #67e8f9, var(--indigo-300), #f0abfc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.toggles {
+  display: flex;
+  gap: 8px;
+}
+
+.toggle {
+  height: 28px;
+  padding: 0 12px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.05);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+  color: var(--zinc-400);
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.toggle:hover {
+  color: var(--zinc-200);
+}
+
+.toggle[aria-checked='true'] {
+  background: rgb(99 102 241 / 0.2);
+  box-shadow: inset 0 0 0 1px rgb(129 140 248 / 0.4);
+  color: var(--indigo-200);
+}
+
+/* ---- Columns -------------------------------------------------------- */
+.grid {
+  display: grid;
+  flex: 1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  min-height: 0;
+  padding: 12px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--zinc-900);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.05);
+  transition: opacity 0.3s, box-shadow 0.3s;
+}
+
+.column.active {
+  box-shadow: 0 0 0 2px rgb(99 102 241 / 0.5), 0 0 36px -6px rgb(99 102 241 / 0.55);
+}
+
+.column.dimmed {
+  opacity: 0.5;
+}
+
+.caption {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 8px;
+  height: 32px;
+  padding: 0 12px;
+  border-bottom: 1px solid rgb(255 255 255 / 0.05);
+  color: var(--zinc-400);
+  font-size: 12px;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.name {
+  color: var(--zinc-200);
+  font-weight: 500;
+}
+
+.caption-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.icon-button {
+  min-width: 22px;
+  padding: 2px 4px;
+  border: 0;
+  border-radius: 4px;
+  background: none;
+  color: inherit;
+  font-size: 13px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background: rgb(255 255 255 / 0.1);
+  color: #fff;
+}
+
+.mute.audible {
+  color: var(--indigo-300);
+}
+
+.mute.silenced {
+  color: #f87171;
+}
+
+.frame-wrap {
+  position: relative;
+  flex: 1;
+  background: #000;
+}
+
+/* Size and transform are set per column by layoutColumn() in app.js. */
+.frame-wrap {
+  overflow: hidden;
+}
+
+.frame-wrap iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #000;
+  transform-origin: top left;
+  transition: transform 0.25s;
+}

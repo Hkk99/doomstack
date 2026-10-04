@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Brainrot",
+  "version": "1.0.0",
+  "description": "TikTok, Instagram Reels and YouTube Shorts, side by side and in sync.",
+  "action": {
+    "default_title": "Open Brainrot"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "permissions": ["declarativeNetRequest"],
+  "host_permissions": [
+    "https://*.tiktok.com/*",
+    "https://*.instagram.com/*",
+    "https://*.youtube.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.tiktok.com/*",
+        "https://*.instagram.com/*",
+        "https://*.youtube.com/*"
+      ],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ]
+}

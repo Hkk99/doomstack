@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brainrot</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <div class="logo-bars"><span></span><span></span><span></span></div>
+        <span class="logo-text">BRAINROT</span>
+      </div>
+      <div class="toggles">
+        <button type="button" class="toggle" role="switch" id="toggle-audio" title="On: only the hovered feed plays sound. Off: all three play sound.">Sync Audio</button>
+        <button type="button" class="toggle" role="switch" id="toggle-scroll" title="On: scrolling one feed advances the other two.">Sync Scroll</button>
+        <button type="button" class="toggle" role="switch" id="toggle-auto" title="On: go to the next video when the current one finishes. With Sync Scroll on, the hovered feed sets the pace.">Auto Scroll</button>
+        <button type="button" class="toggle" role="switch" id="toggle-fill" title="On: zoom TikTok and Instagram onto the video, hiding their menus. Turn off to reach menus, search or login.">Fill Video</button>
+      </div>
+    </header>
+
+    <main class="grid" id="grid"></main>
+
+    <template id="column-template">
+      <section class="column">
+        <div class="caption">
+          <span class="dot"></span>
+          <span class="name"></span>
+          <span class="caption-actions">
+            <button type="button" class="icon-button mute" title="Mute this feed"></button>
+            <button type="button" class="icon-button reload" title="Reload">&#x21bb;</button>
+          </span>
+        </div>
+        <div class="frame-wrap">
+          <iframe allow="autoplay; fullscreen; encrypted-media; picture-in-picture; clipboard-write"></iframe>
+        </div>
+      </section>
+    </template>
+
+    <script src="app.js"></script>
+  </body>
+</html>
